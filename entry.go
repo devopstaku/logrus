@@ -45,6 +45,11 @@ func (entry *Entry) Reader() (*bytes.Buffer, error) {
 	return bytes.NewBuffer(serialized), err
 }
 
+// Returns a byte[] for the entry, which is a proxy to the formatter.
+func (entry *Entry) Bytes() ([]byte, error) {
+	return entry.Logger.Formatter.Format(entry)
+}
+
 // Returns the string representation from the reader and ultimately the
 // formatter.
 func (entry *Entry) String() (string, error) {
